@@ -1,0 +1,41 @@
+.wrapper {
+    width: 1110px;
+    margin: 0 auto;
+}
+.header__wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+    padding: 0 50px;
+}
+.header {
+    height: 100px;
+    background-color: lightblue;
+}
+.header__auth {
+    display: flex;
+}
+.btn {
+    border: 1px solid white;
+    height: 50px;
+    padding: 0 50px;
+    border-radius: 20px;
+}
+.btn span {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    display: inline-block;
+    text-decoration: none;
+}
+.auth__btn:not(:last-of-type) {
+    margin-right: 50px;
+}
+main {
+    flex-grow: 1;
+}
+.footer {
+    height: 100px;
+    background-color: black;
+}
