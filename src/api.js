@@ -14,9 +14,9 @@ let server = createServer({
     },
 
     seeds(server) {
-        server.create("question", { id: 1, q: "Who are u?" })
-        server.create("question", { id: 2, q: "What is this?" })
-        server.create("question", { id: 3, q: "What the f?" })
+        server.create("question", { id: 1, q: "Who are u?", v: ["Shit", "pig", 'frog'], c: "Shit" })
+        server.create("question", { id: 2, q: "What is this?" , v: ["i", "dont", "kwon"], c: "know"})
+        server.create("question", { id: 3, q: "What the f?", v: ["fuck u"], c: "fuck u" })
     },
 })
 

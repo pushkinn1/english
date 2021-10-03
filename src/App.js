@@ -17,14 +17,6 @@ class App extends React.Component {
                         <div className="header__logo">
                             <Link to="/">Logo</Link>
                         </div>
-                        <div className="header__auth">
-                            <Link to="/signUp" className="btn auth__btn">
-                                <span>Sign up</span>
-                            </Link>
-                            <Link to="/signIn" className="btn auth__btn">
-                                <span>Sign in</span>
-                            </Link>
-                        </div>
                     </div>
                 </header>
                 <main>
@@ -47,7 +39,7 @@ class App extends React.Component {
 
 function Main() {
     return (
-        <div>Welcome to our app <Link to="/themeSelection">select theme</Link></div>
+        <div style={{textAlign: "center", marginTop: 100 + "px"}}>Welcome to our app <Link to="/themeSelection">select theme</Link></div>
     )
 }
 
