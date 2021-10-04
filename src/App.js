@@ -62,7 +62,19 @@ class App extends React.Component {
 function Main() {
     return (
         <div className="wrapper main__wrapper">
-            <div>Welcome to our app <Link to="/themeSelection">select theme</Link></div>
+            <div className="main__look">
+                <h2 className="main__title">Проверьте свой уровень английского</h2>
+                <p className="main__subtitle">
+                    Бесплатный комплексный тест, который поможет определить твои знания языка в разных отраслях
+                </p>
+                <Link to="/themeSelection">
+                    <div className="btn main__btn">
+                        <span>
+                            Начать тест
+                        </span>
+                    </div>
+                </Link>
+            </div>
             <img src={main_img} className="main__img" />
         </div>
     )
@@ -112,7 +124,7 @@ class QuestionList extends React.Component {
         if (this.state.answers[this.state.curr] == null)
             (checked) ? checked = checked.value : checked = null;
         else
-        checked = this.state.answers[this.state.curr];
+            checked = this.state.answers[this.state.curr];
         let newAnswers = this.state.answers;
         newAnswers[this.state.curr] = checked;
         if (this.state.curr == this.state.questions.length - 1) this.setState({ finished: true });
@@ -143,10 +155,10 @@ class QuestionList extends React.Component {
 class Question extends React.Component {
     render() {
         let variants = this.props.question["v"].map(el => {
-            return(
+            return (
                 <div key={el}>
                     <input type="radio" value={el} name={el} id={el} />
-                    <label htmlFor={el}>{el}</label> 
+                    <label htmlFor={el}>{el}</label>
                 </div>
             )
         })

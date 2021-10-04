@@ -24,10 +24,18 @@
     font-weight: bold;
 }
 .btn {
-    border: 1px solid white;
-    height: 50px;
-    padding: 0 50px;
-    border-radius: 20px;
+    background: #EDCF83;
+    text-align: center;
+    border-radius: 15px;
+    transition-duration: .5s;
+}
+.btn:hover {
+    background: #263238;
+    color: white;
+}
+.main__btn {
+    height: 37px;   
+    max-width: 255px;
 }
 .btn span {
     position: relative;
@@ -51,4 +59,25 @@ main {
 }
 .footer {
     height: 100px;
+}
+.main__look {
+    padding-top: 130px;
+    max-width: 450px;
+}
+.main__title {
+    margin-bottom: 34px;
+    font-family: Ubuntu;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 43px;
+    letter-spacing: 0.02em;
+    text-align: left;
+    color: #263238;
+}
+.main__title-smaller {
+    font-size: 30px;
+}
+.main__subtitle {
+    margin-bottom: 34px;
 }

@@ -1,5 +1,6 @@
 import React from "react"
 import QuestionList from "./questions";
+import main__img2 from "../imgs/main__img2.svg"
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,7 +11,7 @@ import {
 class ThemeSelection extends React.Component {
     render() {
         return (
-            <div className="wrapper">
+            <div className="wrapper main__wrapper">
                 <Switch>
                     <Route path='/themeSelection'>
                         <ThemesList />
@@ -27,9 +28,16 @@ class ThemeSelection extends React.Component {
 class ThemesList extends React.Component {
     render() {
         return (
-            <div>Select theme <br />
-                <Link to="/aviation">Aviation</Link>
+            <div className="main__wrapper wrapper">
+                <div className="main__look">
+                    <div className="main__title main__title-smaller">
+                        Выберите тему
+                    </div>
+                    <Link to="/aviation">Aviation</Link>
+                </div>
+                <img src={main__img2} />
             </div>
+
         )
     }
 }
