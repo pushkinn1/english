@@ -10,6 +10,7 @@ html, body {
     height: 100%;
     display: flex;
     flex-direction: column;
+    background: url("imgs/bg.png") center no-repeat;
 }
 a:link {
     text-decoration: none;

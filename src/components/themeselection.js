@@ -10,10 +10,10 @@ import {
 class ThemeSelection extends React.Component {
     render() {
         return (
-            <div>
+            <div className="wrapper">
                 <Router>
                     <Switch>
-                        <Route exact path='/themeSelection'>
+                        <Route path='/themeSelection'>
                             <ThemesList />
                         </Route>
                         <Route path='/aviation'>
@@ -25,13 +25,15 @@ class ThemeSelection extends React.Component {
         )
     }
 }
-
-function ThemesList() {
-    return (
-        <div>Select theme <br />
-            <Link to="/aviation">Aviation</Link>
-        </div>
-    )
+/* ! */
+class ThemesList extends React.Component {
+    render() {
+        return (
+            <div>Select theme <br />
+                <Link to="/aviation">Aviation</Link>
+            </div>
+        )
+    }
 }
 
 export default ThemeSelection 

@@ -1,20 +1,27 @@
 .wrapper {
-    width: 1110px;
+    width: 1051px;
     margin: 0 auto;
 }
 .header__wrapper {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%;
-    padding: 0 50px;
-}
-.header {
-    height: 100px;
-    background-color: lightblue;
+    padding: 50px 0;
 }
 .header__auth {
     display: flex;
+}
+.header__nav ul {
+    list-style-type: none;
+}
+.header__nav ul li {
+    display: inline-block;
+}
+.header__nav ul li:not(:last-of-type) {
+    margin-right: 61px; 
+}
+.header__li-selected {
+    font-weight: bold;
 }
 .btn {
     border: 1px solid white;
@@ -35,7 +42,13 @@
 main {
     flex-grow: 1;
 }
+.main__wrapper {
+    display: flex;
+    justify-content: space-between;
+}
+.main__img {
+    object-fit: contain;
+}
 .footer {
     height: 100px;
-    background-color: black;
 }
