@@ -11,16 +11,14 @@ class ThemeSelection extends React.Component {
     render() {
         return (
             <div className="wrapper">
-                <Router>
-                    <Switch>
-                        <Route path='/themeSelection'>
-                            <ThemesList />
-                        </Route>
-                        <Route path='/aviation'>
-                            <QuestionList theme="aviation" />
-                        </Route>
-                    </Switch>
-                </Router>
+                <Switch>
+                    <Route path='/themeSelection'>
+                        <ThemesList />
+                    </Route>
+                    <Route path='/aviation'>
+                        <QuestionList theme="aviation" />
+                    </Route>
+                </Switch>
             </div>
         )
     }
@@ -36,4 +34,4 @@ class ThemesList extends React.Component {
     }
 }
 
-export default ThemeSelection 
+export default ThemeSelection
