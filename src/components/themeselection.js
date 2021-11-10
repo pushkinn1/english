@@ -13,12 +13,15 @@ class ThemeSelection extends React.Component {
         return (
             <div className="wrapper main__wrapper">
                 <Switch>
+
                     <Route path='/themeSelection'>
                         <ThemesList />
                     </Route>
-                    <Route path='/aviation'>
+
+                    <Route path="/aviation">
                         <QuestionList theme="aviation" />
                     </Route>
+
                 </Switch>
             </div>
         )
@@ -34,6 +37,7 @@ class ThemesList extends React.Component {
                         Выберите тему
                     </div>
                     <Link to="/aviation">Aviation</Link>
+                    <Link to="/othertheme"> Other</Link>
                 </div>
                 <img src={main__img2} />
             </div>

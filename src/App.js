@@ -1,5 +1,4 @@
 import React from "react";
-import ThemeSelection from "./components/themeselection";
 import {
     BrowserRouter as Router,
     Switch,
@@ -10,7 +9,29 @@ import {
 } from "react-router-dom";
 import './header.css'
 import main_img from "./imgs/main_img.svg"
+import main__img2 from "./imgs/main__img2.svg"
+import server from "./api"
 
+/* class ThemeSelection extends React.Component {
+    render() {
+        return (
+            <div className="wrapper main__wrapper">
+                <Switch>
+
+                    <Route path='/themeSelection'>
+                        <ThemesList />
+                    </Route>
+
+                    <Route path="/aviation">
+                        <QuestionList theme="aviation" />
+                    </Route>
+
+                </Switch>
+            </div>
+        )
+    }
+}
+ */
 class App extends React.Component {
     render() {
         return (
@@ -37,9 +58,6 @@ class App extends React.Component {
                         <Route path="/main">
                             <Main />
                         </Route>
-                        <Route path="/themeSelection">
-                            <ThemeSelection />
-                        </Route>
                         <Route path="/aboutUs">
                             <AboutUs />
                         </Route>
@@ -48,6 +66,9 @@ class App extends React.Component {
                         </Route>
                         <Route path='/aviation'>
                             <QuestionList theme="aviation" />
+                        </Route>
+                        <Route path='/medicine'>
+                            <QuestionList theme="medicine" />
                         </Route>
                     </Switch>
                 </main>
@@ -91,9 +112,17 @@ function AboutUs() {
 class ThemesList extends React.Component {
     render() {
         return (
-            <div>Select theme <br />
-                <Link to="/aviation">Aviation</Link>
+            <div className="main__wrapper wrapper">
+                <div className="main__look">
+                    <div className="main__title main__title-smaller">
+                        Выберите тему
+                    </div>
+                    <Link className="themes__link" to="/aviation">Aviation</Link>
+                    <Link className="themes__link" to="/medicine">Medicine</Link>
+                </div>
+                <img src={main__img2} />
             </div>
+
         )
     }
 }
@@ -106,10 +135,11 @@ class QuestionList extends React.Component {
         this.next = this.next.bind(this);
     }
     componentDidMount() {
-        fetch("api/questions")
+        fetch("api/branch/" + this.props.theme)
             .then(res => res.json())
             .then(res => {
-                this.setState({ questions: res["questions"], loaded: true, answers: Array(res["questions"].length).fill(null) })
+                console.log(res)
+                this.setState({ questions: res, loaded: true, answers: Array(res.length).fill(null) })
                 this.getCorrectAnswers = this.getCorrectAnswers.bind(this);
             })
     }
@@ -144,7 +174,9 @@ class QuestionList extends React.Component {
     render() {
         if (this.state.loaded)
             return (
-                !this.state.finished ? <Question next={this.next} prev={this.prev} question={this.state.questions[this.state.curr]} /> : <Finish theme={this.props.theme} answers={this.state.answers} correctAnswers={this.getCorrectAnswers()} />
+                !this.state.finished ? <Question
+                    next={this.next} prev={this.prev} question={this.state.questions[this.state.curr]} number={this.state.curr} /> :
+                    <Finish theme={this.props.theme} answers={this.state.answers} correctAnswers={this.getCorrectAnswers()} />
             )
         else return (
             <div className="wrapper">Loading</div>
@@ -156,18 +188,24 @@ class Question extends React.Component {
     render() {
         let variants = this.props.question["v"].map(el => {
             return (
-                <div key={el}>
-                    <input type="radio" value={el} name={el} id={el} />
-                    <label htmlFor={el}>{el}</label>
-                </div>
+                <label key={el} htmlFor={el}>
+                    <div className="question__variant" key={el}>
+                        <span>
+                            <input type="radio" value={el} name={this.props.number} id={el} />
+                            {el}
+                        </span>
+                    </div>
+                </label>
             )
         })
         return (
-            <div className="wrapper">
-                <h2>{this.props.question["q"]}</h2>
+            <div className="wrapper question__wrapper">
+                <h2 className="question__title"><span className="question__number">{this.props.number + 1}</span> {this.props.question["q"]}</h2>
                 {variants}
-                <button onClick={this.props.prev}>Prev</button>
-                <button onClick={this.props.next}>Next</button>
+                <div className="question__arrows">
+                    <div className="question__btn question__btn-bk" onClick={this.props.prev}></div>
+                    <div className="question__btn question__btn-fw" onClick={this.props.next}></div>
+                </div>
             </div>
         )
     }
