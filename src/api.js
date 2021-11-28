@@ -17,6 +17,11 @@ let server = createServer({
             let branch = request.params.branch;
             return (schema.questions.where({ branch: branch }).models.map(el => el.attrs))
         })
+        this.get("/branches", () => {
+            return {
+                themes: ["Aviation", "Medicine"]
+            }
+        })
     },
 
     seeds(server) {

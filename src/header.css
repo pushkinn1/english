@@ -49,8 +49,10 @@
 }
 main {
     flex-grow: 1;
+    display: flex;
+    flex-direction: column;
 }
-.main__wrapper {
+.wrapper_space {
     display: flex;
     justify-content: space-between;
 }
@@ -84,6 +86,21 @@ main {
 .question__wrapper {
     max-width: 281px;
     padding: 80px 0;
+    position: relative;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column; 
+}
+.question__wrapper::after {
+    position: absolute;
+    right: -200px;
+    bottom: 100px;
+    content: '';
+    height: 385px;
+    background-repeat: no-repeat;
+    background-size: contain;
+    width: 110px;
+    background-image: url("../src/imgs/thinking.svg");
 }
 .question__title {
     display: flex;
@@ -102,7 +119,7 @@ main {
     line-height: 25px;
     margin-right: 19px;
 }
-.question__variant {
+.variant {
     background-color: rgba(213, 242, 252, .5);
     padding: 0 16px;
     border-radius: 15px;
@@ -111,13 +128,16 @@ main {
     cursor: pointer;
     transition-duration: .5s;
 }
-.question__variant:hover {
+.question__variant {
+    margin-bottom: 20px;
+}
+.variant:hover {
     background-color: #EDCF83;
 }
-.question__variant input {
+.variant input {
     margin-right: 15px;
 }
-.question__variant span {
+.variant span {
     display: inline-block;
     position: relative;
     top: 50%;
@@ -126,27 +146,38 @@ main {
 .question__arrows {
     display: flex;
     justify-content: space-between;
-    width: 72px;
+    width: 112px;
     margin: 0 auto;
 }
 .question__btn {
     background-size: contain;
     background-repeat: no-repeat;
-    width: 12px;
-    height: 20px;
+    width: 47px;
+    height: 47px;
     cursor: pointer;
+    background-color: #A6DCED;
+    border-radius: 50%;
+    text-align: center;
+    transition-duration: .5s;
 }
-.question__btn-fw {
-    background-image: url("imgs/forward.svg");
-    
+.question__btn:hover {
+    background-color: #EDCF83;
 }
-.question__btn-bk {
-    background-image: url("imgs/backwards.svg");
+.question__arrow {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
 }
 .themes__link {
     display: block;
     transition-duration: .5s;
+    font-family: Ubuntu;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 23px;
+    letter-spacing: 0.02em;    
 }
-.themes__link:hover {
-    color: white;
+.finish__wrapper {
+    align-items: center;
 }

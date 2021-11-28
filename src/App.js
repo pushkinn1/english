@@ -10,28 +10,11 @@ import {
 import './header.css'
 import main_img from "./imgs/main_img.svg"
 import main__img2 from "./imgs/main__img2.svg"
+import prev from "./imgs/backwards.svg"
+import next from "./imgs/forward.svg"
 import server from "./api"
+import finish__img from "../src/imgs/five.svg"
 
-/* class ThemeSelection extends React.Component {
-    render() {
-        return (
-            <div className="wrapper main__wrapper">
-                <Switch>
-
-                    <Route path='/themeSelection'>
-                        <ThemesList />
-                    </Route>
-
-                    <Route path="/aviation">
-                        <QuestionList theme="aviation" />
-                    </Route>
-
-                </Switch>
-            </div>
-        )
-    }
-}
- */
 class App extends React.Component {
     render() {
         return (
@@ -72,9 +55,6 @@ class App extends React.Component {
                         </Route>
                     </Switch>
                 </main>
-                <footer className="footer">
-
-                </footer>
             </Router>
         )
     }
@@ -82,7 +62,7 @@ class App extends React.Component {
 
 function Main() {
     return (
-        <div className="wrapper main__wrapper">
+        <div className="wrapper wrapper_space">
             <div className="main__look">
                 <h2 className="main__title">Проверьте свой уровень английского</h2>
                 <p className="main__subtitle">
@@ -110,15 +90,33 @@ function AboutUs() {
 }
 
 class ThemesList extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = { themes: [] }
+    }
+    componentDidMount() {
+        fetch("api/branches")
+            .then(res => res.json())
+            .then(res => this.setState({ themes: res.themes }));
+    }
     render() {
+        let themes = this.state.themes.map(el => {
+            let _to = "/" + el.toLowerCase();
+            return (
+                <Link className="themes__link variant" to={_to} key={el}>
+                    <span>
+                        {el}
+                    </span>
+                </Link>
+            )
+        })
         return (
-            <div className="main__wrapper wrapper">
+            <div className="wrapper_space wrapper">
                 <div className="main__look">
                     <div className="main__title main__title-smaller">
                         Выберите тему
                     </div>
-                    <Link className="themes__link" to="/aviation">Aviation</Link>
-                    <Link className="themes__link" to="/medicine">Medicine</Link>
+                    {themes.length > 0 ? themes : <div>Loading</div>}
                 </div>
                 <img src={main__img2} />
             </div>
@@ -174,9 +172,17 @@ class QuestionList extends React.Component {
     render() {
         if (this.state.loaded)
             return (
-                !this.state.finished ? <Question
-                    next={this.next} prev={this.prev} question={this.state.questions[this.state.curr]} number={this.state.curr} /> :
-                    <Finish theme={this.props.theme} answers={this.state.answers} correctAnswers={this.getCorrectAnswers()} />
+                !this.state.finished ?
+                    <Question
+                        next={this.next}
+                        prev={this.prev}
+                        question={this.state.questions[this.state.curr]}
+                        number={this.state.curr}
+                    /> :
+                    <Finish theme={this.props.theme}
+                        answers={this.state.answers}
+                        correctAnswers={this.getCorrectAnswers()}
+                    />
             )
         else return (
             <div className="wrapper">Loading</div>
@@ -189,7 +195,7 @@ class Question extends React.Component {
         let variants = this.props.question["v"].map(el => {
             return (
                 <label key={el} htmlFor={el}>
-                    <div className="question__variant" key={el}>
+                    <div className="variant question__variant" key={el}>
                         <span>
                             <input type="radio" value={el} name={this.props.number} id={el} />
                             {el}
@@ -203,28 +209,52 @@ class Question extends React.Component {
                 <h2 className="question__title"><span className="question__number">{this.props.number + 1}</span> {this.props.question["q"]}</h2>
                 {variants}
                 <div className="question__arrows">
-                    <div className="question__btn question__btn-bk" onClick={this.props.prev}></div>
-                    <div className="question__btn question__btn-fw" onClick={this.props.next}></div>
+                    <div className="question__btn" onClick={this.props.prev}>
+                        <img className="question__arrow" src={prev} />
+                    </div>
+                    <div className="question__btn" onClick={this.props.next}>
+                        <img className="question__arrow" src={next} />
+                    </div>
                 </div>
             </div>
         )
     }
 }
 
-function Finish(props) {
-    let result = 0;
-    for (let i = 0; i < props.answers.length; i++)
-        if (props.answers[i] == props.correctAnswers[i])
-            result++;
-    return (
-        <div className="wrapper">
-            <h2>
-                You finished theme {props.theme}
-            </h2>
-            <div>Result: {result}</div>
-            <Link to="/main">Return to main</Link>
-        </div>
-    )
+class Finish extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {loaded: false};
+    }
+    componentDidMount() {
+        this.img = new Image();
+        this.img.src = finish__img;
+        this.img.onload = () => this.setState({loaded: true});
+    }
+    render() {
+        let result = 0;
+
+        for (let i = 0; i < this.props.answers.length; i++)
+            if (this.props.answers[i] == this.props.correctAnswers[i])
+                result++;
+        if (this.state.loaded)
+            return (
+                <div className="wrapper wrapper_space finish__wrapper">
+                    <div>
+                        <h2>
+                            You finished theme {this.props.theme}
+                        </h2>
+                        <div>Result: {result}</div>
+                        <Link to="/main">Return to main</Link>
+                    </div>
+                    <img src={finish__img} />
+                </div>
+            )
+        else
+            return (
+                <div></div>
+            )
+    }
 }
 
 
