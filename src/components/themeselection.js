@@ -36,8 +36,11 @@ class ThemesList extends React.Component {
                     <div className="main__title main__title-smaller">
                         Выберите тему
                     </div>
-                    <Link to="/aviation">Aviation</Link>
-                    <Link to="/othertheme"> Other</Link>
+                    <span className="Themes">
+                        <Link className="themes__link" to="/aviation">Aviation</Link>
+                        <Link className="themes__link" to="/medicine">Medicine</Link>
+                        <Link className="themes__link" to="/architecture">Architecture</Link>
+                    </span>
                 </div>
                 <img src={main__img2} />
             </div>

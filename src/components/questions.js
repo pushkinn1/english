@@ -92,7 +92,7 @@ function Finish(props) {
             <h2>
                 You finished theme {props.theme}
             </h2>
-            <div>Result: {result}</div>
+            <div>Result: {result}/{props.answers.length}</div>
         </div>
     )
 }

@@ -59,6 +59,11 @@ main {
 .main__img {
     object-fit: contain;
 }
+.logo {
+    width: 20%;
+    height: 20%;
+    object-fit: contain;
+}
 .footer {
     height: 100px;
 }

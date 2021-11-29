@@ -12,6 +12,7 @@ import main_img from "./imgs/main_img.svg"
 import main__img2 from "./imgs/main__img2.svg"
 import prev from "./imgs/backwards.svg"
 import next from "./imgs/forward.svg"
+import logo from "./imgs/logo.svg"
 import server from "./api"
 import finish__img from "../src/imgs/five.svg"
 
@@ -22,7 +23,8 @@ class App extends React.Component {
                 <header className="header">
                     <div className="wrapper header__wrapper">
                         <div className="header__logo">
-                            <Link to="/main">Logo</Link>
+                            <Link to="/main"> Logo</Link>
+                            <img src={logo} className="logo"></img>
                         </div>
                         <nav className="header__nav">
                             <ul>
@@ -52,6 +54,9 @@ class App extends React.Component {
                         </Route>
                         <Route path='/medicine'>
                             <QuestionList theme="medicine" />
+                        </Route>
+                        <Route path='/architecture'>
+                            <QuestionList theme="architecture" />
                         </Route>
                     </Switch>
                 </main>
@@ -244,7 +249,7 @@ class Finish extends React.Component {
                         <h2>
                             You finished theme {this.props.theme}
                         </h2>
-                        <div>Result: {result}</div>
+                        <div>Result: {result} / {this.props.answers.length}</div>
                         <Link to="/main">Return to main</Link>
                     </div>
                     <img src={finish__img} />
