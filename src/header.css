@@ -59,16 +59,19 @@ main {
 .main__img {
     object-fit: contain;
 }
+.header__logo{
+    width: 70%
+    
+}
 .logo {
-    width: 20%;
-    height: 20%;
-    object-fit: contain;
+    width: 30%;
+    height: 30%;
 }
 .footer {
     height: 100px;
 }
 .main__look {
-    padding-top: 130px;
+    padding-top: 50px;
     max-width: 450px;
 }
 .main__title {
@@ -185,4 +188,5 @@ main {
 }
 .finish__wrapper {
     align-items: center;
+    font-family: Ubuntu;
 }

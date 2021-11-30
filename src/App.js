@@ -23,7 +23,7 @@ class App extends React.Component {
                 <header className="header">
                     <div className="wrapper header__wrapper">
                         <div className="header__logo">
-                            <Link to="/main"> Logo</Link>
+                            <Link to="/main"> </Link>
                             <img src={logo} className="logo"></img>
                         </div>
                         <nav className="header__nav">
@@ -69,9 +69,9 @@ function Main() {
     return (
         <div className="wrapper wrapper_space">
             <div className="main__look">
-                <h2 className="main__title">Проверьте свой уровень английского</h2>
+                <h2 className="main__title">Тренажер для профессиональной лексики </h2>
                 <p className="main__subtitle">
-                    Бесплатный комплексный тест, который поможет определить твои знания языка в разных отраслях
+                    Бесплатный комплексный тест, который поможет улучшить твои знания языка в разных отраслях
                 </p>
                 <Link to="/themeSelection">
                     <div className="btn main__btn">
@@ -247,10 +247,10 @@ class Finish extends React.Component {
                 <div className="wrapper wrapper_space finish__wrapper">
                     <div>
                         <h2>
-                            You finished theme {this.props.theme}
+                            You have finished {this.props.theme} theme
                         </h2>
                         <div>Result: {result} / {this.props.answers.length}</div>
-                        <Link to="/main">Return to main</Link>
+                        <Link to="/main">Go home</Link>
                     </div>
                     <img src={finish__img} />
                 </div>
