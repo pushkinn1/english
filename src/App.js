@@ -28,9 +28,9 @@ class App extends React.Component {
                         </div>
                         <nav className="header__nav">
                             <ul>
-                                <li><NavLink activeClassName="header__li-selected" to="/main">Главная</NavLink></li>
-                                <li><NavLink activeClassName="header__li-selected" to="/themeSelection">Тест</NavLink></li>
-                                <li><NavLink activeClassName="header__li-selected" to="/aboutUs">О нас</NavLink></li>
+                                <li><NavLink activeClassName="header__li-selected" to="/main">Main</NavLink></li>
+                                <li><NavLink activeClassName="header__li-selected" to="/themeSelection">Test</NavLink></li>
+                                <li><NavLink activeClassName="header__li-selected" to="/aboutUs">About us</NavLink></li>
                             </ul>
                         </nav>
                     </div>
@@ -69,14 +69,14 @@ function Main() {
     return (
         <div className="wrapper wrapper_space">
             <div className="main__look">
-                <h2 className="main__title">Тренажер для профессиональной лексики </h2>
+                <h2 className="main__title">Improve your vocabulary in different topics </h2>
                 <p className="main__subtitle">
-                    Бесплатный комплексный тест, который поможет улучшить твои знания языка в разных отраслях
+                Free quiz that will help you improve your language skills in various industries
                 </p>
                 <Link to="/themeSelection">
                     <div className="btn main__btn">
                         <span>
-                            Начать тест
+                            Start
                         </span>
                     </div>
                 </Link>
@@ -119,7 +119,8 @@ class ThemesList extends React.Component {
             <div className="wrapper_space wrapper">
                 <div className="main__look">
                     <div className="main__title main__title-smaller">
-                        Выберите тему
+                        Choose a topic
+
                     </div>
                     {themes.length > 0 ? themes : <div>Loading</div>}
                 </div>
